@@ -72,4 +72,19 @@ def game_over_text():
 
 def player(x,y):
     #draw the player on the screen
-    screen.blit
+    screen.blit(playerImg,(x,y))
+
+def enemy(x,y,i):
+    #Draw an enemy on the screen
+    screen.blit(enemyImg[i],(x,y))
+
+def fire_bullet(x,y):
+    #Fire a bullet from the player's position
+    global bullet_state
+    bullet_state = "fire"
+    screen_blit(bulletImg, (x+16,y+10))
+
+def iscollision(enemyX,enemyY,bulletX,bulletY):
+    #check if there is a collision between the enemy and a bullet
+    distance = math.sqrt((enemyX-bulletX)**2 + (enemyY - bulletY)**2)
+    return distance < COLLISION_DISTANCE
